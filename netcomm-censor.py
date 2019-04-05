@@ -176,7 +176,7 @@ def main():
 	
 	url_doAdd = url + c[C]['url_doAdd']
 	#/scoutflt.cmd?action=add&fltNa
-	url_doAdd_template = url_doAdd_template + "?action="+c['C']['url_doAdd_action'] 
+	url_doAdd_template = url_doAdd_template + "?action="+c[C]['url_doAdd_action'] 
 	
 	ports = c['DEFAULT']['ports']
 	lan = c['DEFAULT']['local']
@@ -205,7 +205,14 @@ def main():
 		ipversion_str = str(ipversion)
 		
 		# if ip invalid
-		if(len(ipversion_str) <= 0):
+		if(len(ipversion_str) <= 0):		
+			bar.numerator = i
+			what_to_log = "Line: "+line+" - invalid IP! "
+				
+			log.write(what_to_log+"\n")
+			print(what_to_log)		
+			print(str(bar))
+
 			continue
 		
 		# Steps might change if more effecient way found 
