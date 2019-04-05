@@ -1,0 +1,23 @@
+GET /scoutflt.cmd?action=add&fltName=name11111111111&ipver=4&protocol=0&srcAddr=222.222.222.222/22&srcPort=3:3333&dstAddr=44.44.44.44&dstPort=5:5555&sessionKey=440647167 HTTP/1.1
+Host: 192.168.20.1
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-GB,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://192.168.20.1/scoutflt.html
+Authorization: Basic YWRtaW46YWRtaW4=
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+GET /scoutflt.html HTTP/1.1
+Host: 192.168.20.1
+User-Agent: Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-GB,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://192.168.20.1/scoutflt.cmd?action=view
+Authorization: Basic YWRtaW46YWRtaW4=
+Connection: close
+Upgrade-Insecure-Requests: 1
+  

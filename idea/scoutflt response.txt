@@ -1,0 +1,223 @@
+HTTP/1.1 200 Ok
+Server: micro_httpd
+Cache-Control: no-cache
+Date: Fri, 05 Apr 2019 20:28:48 GMT
+Content-Type: text/html
+Connection: close
+
+<html>
+   <head>
+      <meta HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+      <link rel="stylesheet" href='stylemain.css' type='text/css'>
+         <link rel="stylesheet" href='colors.css' type='text/css'>
+            <script language="javascript" src="util.js"></script>
+	     <script type="text/javascript" src="lang/b28n.js"></script>
+	     <script language="javascript"></script>
+            <script language="javascript">
+<!-- hide
+setLanguage('0'); 
+Butterlate.setTextDomain("advanced_7");
+function initTranslation() {
+	var idArray = new Array("ipFltOutTitle", "ipFltOutTips", "ipFilterName", "ipFilterIpVer", "strProtocol", "ipFilterSrcIpAddr", "ipFilterSrcPort", "ipFilterDstIpAddr", "ipFilterDstPort", "buttonApplySave");
+	setAllIdValue(idArray);
+}
+var enblIP6 = '1';
+
+var obj1Items = '1}-{CDNTEL}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{37.8.145.84}-{}-{|,|1}-{40001aM}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{81.95.35.235}-{}-{|,|1}-{CDN246}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{46.229.162.173}-{}-{|,|1}-{STV1SPY}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{}-{213.239.206.214}-{}-{|,|1}-{ICERESALE}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{212.59.102.163}-{}-{|,|1}-{FBIMODE1}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{87.240.137.1}-{255.255.255.0}-{|,|1}-{VIM_CSS}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{87.240.129.128}-{255.255.255.128}-{|,|1}-{FBI_MODE2}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{87.240.182.1}-{255.255.255.0}-{|,|1}-{VIM_CS3}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{87.240.129.70}-{255.255.255.252}-{|,|1}-{Vic2}-{4}-{TCP or UDP}-{1}-{65535}-{1}-{65535}-{192.168.20.1}-{255.255.255.0}-{95.142.206.0}-{255.255.255.0}-{|,|1}-{11111111}-{4}-{TCP or UDP}-{3}-{3333}-{5}-{555}-{22.22.22.22}-{255.255.252.0}-{4.44.44.44}-{}-{|,|Enable}-{FilterName}-{IPVersion}-{Protocol}-{SourcePortStart}-{SourcePortEnd}-{DestinationPortStart}-{DestinationPortEnd}-{SourceIPAddress}-{SourceNetMask}-{DestinationIPAddress}-{DestinationNetMask}-{|,|';
+
+var obj1Rows = numOfRow(obj1Items);
+var filterNameArray = getColFromList(obj1Items, "FilterName");
+
+function frmLoad()
+{
+	initTranslation();
+}
+function btnApply() {
+   var loc = 'scoutflt.cmd?action=add';
+
+   with ( document.forms[0] ) {
+      if ( txtfltname.value == '' ) {
+				msg =_("ipFltFiltName");
+         alert(msg);
+         return;
+      }
+
+      if ( isValidName(txtfltname.value) == false ) {
+				msg = _("ipFltEntValidName");
+         alert(msg);
+         return;
+      }      
+
+	var i;
+	for(i=0; i < obj1Rows; i++){
+		if(filterNameArray[i] == txtfltname.value){
+                msg =_("ipFltwarninginfo");
+                alert(msg);
+                return;
+		}
+	}
+
+
+      if ( srcaddr.value == "" && srcport.value == "" &&
+           dstaddr.value == "" && dstport.value == "" &&
+           protocol.selectedIndex == 0 ) {
+				msg = _("ipFltCondiSpec");
+         alert(msg);
+         return;
+      }      
+
+      if ( srcaddr.value != "" ) {
+         if (ipver.options[ipver.selectedIndex].value == '4') {
+            if (isValidIpAddress(srcaddr.value) == false ) {
+						msg =_("ipFltSrcAdd")+' "' + srcaddr.value + '" '+_("ipFltInvalidv4Add");
+               alert(msg);
+               return;
+            }
+         }
+         else {
+            if (isValidIpAddress6(srcaddr.value) == false ) {
+						msg = _("ipFltSrcAdd")+' "' + srcaddr.value + '" '+_("ipFltInvalidv6Add");
+               alert(msg);
+               return;
+            }
+         }
+      }
+
+      if ( srcport.value != "" && isValidPort(srcport.value) == false ) {
+				msg =_("ipFltSrcPort")+' "' + srcport.value + '" '+_("ipFltInvalidPort");
+         alert(msg);
+         return;
+      }
+
+      if ( dstaddr.value != "" ) {
+         if (ipver.options[ipver.selectedIndex].value == '4') {
+            if (isValidIpAddress(dstaddr.value) == false ) {
+						msg =_("ipFltDstAdd")+' "' + dstaddr.value + '" '+_("ipFltInvalidv4Add");
+               alert(msg);
+               return;
+            }
+         }
+         else {
+            if (isValidIpAddress6(dstaddr.value) == false ) {
+						msg =_("ipFltDstAdd")+' "' + dstaddr.value + '" '+_("ipFltInvalidv6Add");
+               alert(msg);
+               return;
+            }
+         }
+      }
+
+      if ( dstport.value != "" && isValidPort(dstport.value) == false ) {
+				msg =_("ipFltDstPort")+' "' + dstport.value + '" '+_("ipFltInvalidPort");
+         alert(msg);
+         return;
+      }
+
+      if ( (srcport.value != "" || dstport.value != "") && 
+           (protocol.selectedIndex == 0 || protocol.selectedIndex == 4) ) {
+				msg =_("ipFltPortNumber");
+         alert(msg);
+         return;
+      } 
+      
+      // outgoing IP filter name
+      loc += '&fltName=' + encodeUrl(txtfltname.value);
+
+      // ip version
+      loc += '&ipver=' + ipver.options[ipver.selectedIndex].value;
+
+      // protocol
+      loc += '&protocol=' + protocol.options[protocol.selectedIndex].value;
+
+      // source address
+      if ( srcaddr.value != "" )
+         loc += '&srcAddr=' + srcaddr.value;
+
+      // source port
+      if ( srcport.value != "" )
+         loc += '&srcPort=' + srcport.value;
+
+      // destination address
+      if ( dstaddr.value != "" )
+         loc += '&dstAddr=' + dstaddr.value;
+
+      // destination port
+      if ( dstport.value != "" )
+         loc += '&dstPort=' + dstport.value;
+   }
+
+   loc += '&sessionKey=892059483';
+   var code = 'location="' + loc + '"';
+   eval(code);
+}
+
+// done hiding -->
+      </script>
+   </head>
+   <body onLoad='frmLoad()'>
+      <blockquote>
+         <form>
+            <b id='ipFltOutTitle'>Add IP Filter -- Outgoing</b><br>
+            <br>
+            <span id='ipFltOutTips'>The screen allows you to create a filter rule to identify outgoing IP traffic 
+            by specifying a new filter name and at least one condition below. All of the 
+            specified conditions in this filter rule must be satisfied for the rule to take 
+            effect. Click 'Apply/Save' to save and activate the filter.</span><br>
+            <br>
+            <table border="0" cellpadding="0" cellspacing="0">
+               <tr>
+                  <td id='ipFilterName'>Filter Name:</td>
+                  <td><input type='text' size="22" name="txtfltname"></td>
+               </tr>
+               <tr>
+                  <td colspan="2">&nbsp;</td>
+               </tr>
+               <tr><script language="javascript">
+<!-- hide 
+{
+                  document.writeln("<td id='ipFilterIpVer'>IP Version:</td>");
+                  document.writeln("<td><select name='ipver' size='1'>");
+                  document.writeln("      <option value='4'>IPv4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                  if (enblIP6 == '1')
+                     document.writeln("      <option value='6'>IPv6");
+                  document.writeln("    </select></td>");
+}
+// done hiding -->
+               </script></tr>
+               <tr><script language="javascript">
+<!-- hide 
+{
+                  document.writeln("<td id='strProtocol'>Protocol:</td>");
+                  document.writeln("<td><select name='protocol' size='1'>");
+                  document.writeln("      <option value='4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+                  document.writeln("      <option value='0'>TCP/UDP");
+                  document.writeln("      <option value='1'>TCP");
+                  document.writeln("      <option value='2'>UDP");
+                  document.writeln("      <option value='3'>ICMP");
+                  document.writeln("    </select></td>");
+}
+// done hiding -->
+               </script></tr>
+               <tr>
+                  <td id='ipFilterSrcIpAddr'>Source IP address[/prefix length]:</td>
+                  <td><input type='text' size="22" name="srcaddr"></td>
+               </tr>
+               <tr>
+                  <td id='ipFilterSrcPort'>Source Port (port or port:port):</td>
+                  <td><input type='text' size="22" name="srcport"></td>
+               </tr>
+               <tr>
+                  <td id='ipFilterDstIpAddr'>Destination IP address[/prefix length]:</td>
+                  <td><input type='text' size="22" name="dstaddr"></td>
+               </tr>
+               <tr>
+                  <td id='ipFilterDstPort'>Destination Port (port or port:port):</td>
+                  <td><input type='text' size="22" name="dstport"></td>
+               </tr>
+            </table>
+            <br>
+            <br>
+            <center><input type='button' onClick='btnApply()' value='Apply/Save' id='buttonApplySave'></center>
+         </form>
+      </blockquote>
+   </body>
+</html>
