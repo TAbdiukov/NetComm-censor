@@ -73,7 +73,7 @@ def config_section_exists(c, section, default_tuple):
 	# https://stackoverflow.com/a/24899624
 	try:
 		buf = c.get(section, default_tuple)
-	except (NoSectionError, NoOptionError):
+	except:
 		return False
 		
 	if (buf == ""): # still
@@ -85,10 +85,10 @@ def config_section_exists(c, section, default_tuple):
 def config_validate(c):
 	changed = False
 
-    if not(config_section_exists(c, CONFIG_SECTION_DEFAULT, CONFIG_DEFTUPLE)):
+	if not(config_section_exists(c, CONFIG_SECTION_DEFAULT, CONFIG_DEFTUPLE)):
 		changed = True
-        config_default(c)
-	
+		config_default(c)
+
 	if not(config_section_exists(c, CONFIG_SECTION_CURRENT, CONFIG_DEFTUPLE)):
 		changed = True
 		c[CONFIG_SECTION_CURRENT] = c.defaults()
@@ -137,7 +137,7 @@ def main():
 4. ???. Done
 	"""
 	
-	print(PROGRAM_NAME+" "+"Awaits you!")
+	print(PROGRAM_NAME+" "+"greets you!")
 	print("How to:")
 	print(HOW_TO)
 	
@@ -147,18 +147,14 @@ def main():
 	config.read(CONFIG_FILE_NAME)
 	config_validate(config)
 		
-	logname = PROGRAM_NAME+"_"+time_salt+".log"
-	log = open(logname, "a+")
-	
-	cookies = {}
-	
 	# cenlist
 	if(argc > 0):
 		censor_list = (str(sys.argv[1]))
 	else:
 		censor_list = "list.txt"
 	
-	lines = [line.rstrip('\n') for line in open(censor_list, r+)]
+	lfile = open(censor_list, "r+")
+	lines = [line.rstrip('\n') for line in lfile]
 	work = len(lines)+1
 	if(work <= 1):
 		# no IPs
@@ -168,14 +164,13 @@ def main():
 	
 	# print for user
 	print(PROGRAM_NAME+" initialised")
-	print("URL @ "+URL)
 	print("stdout will be logged to "+logname)
 	
 	# pre-cook vars we will often use
 	def_header = ast.literal_eval(c[C]['header']).extend(
 		{'Authorization': gen_basicAuth(c[C]['login'], c[C]['pass'])})
 		
-	url = c[C]['host'])
+	url = c[C]['host']
 	url_view = url + c[C]['url_view']
 	url_add = url + c[C]['url_add']
 	
@@ -185,8 +180,13 @@ def main():
 	
 	ports = c['DEFAULT']['ports']
 	lan = c['DEFAULT']['local']
-	
+
 	hidden_js_len_last = 0
+
+	cookies = {}
+
+	logname = PROGRAM_NAME+"_"+time_salt()+".log"
+	log = open(logname, "a+")
 
 	print("App will start in 2s")
 	# allow user to change mind
@@ -221,7 +221,7 @@ def main():
 		
 		### grab a session key, which ive no idea how to grab overwise
 		### r for faster as it tends to stay in the latter part of string
-		skey = find_between_r(hidden_js, "sessionKey=", "';"
+		skey = find_between_r(hidden_js, "sessionKey=", "';")
 		
 		# 3. Construct a get request
 		##  Sample:
@@ -269,17 +269,15 @@ def main():
 		bar.numerator = i
 		what_to_log = "Line: "+line+" | Code: "+(r.status_code)+" | Last JS len: "+hidden_js_len_last
 		what_to_log +=" ({0:+}) ".format(hidden_js-hidden_js_len_last)
-		
-		
 			
 		log.write(what_to_log+"\n")
 		print(what_to_log)		
 		print(str(bar))
 		#sys.stdout.flush()
 		
-	#time.sleep(SLEEP_TIME/1000)
-
-	# do partial parts of loop
+		hidden_js_len_last = hidden_js_len
+		
+	# do loop partially
 	# 1. Go to url_add
 	r = requests.get(url_add, cookies=cookies, headers=def_header)
 	
