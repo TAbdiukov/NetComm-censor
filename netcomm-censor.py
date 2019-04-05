@@ -133,7 +133,7 @@ def find_hiddenjs(s):
 def main():
 	HOW_TO = """1. Edit config.ini (if needed)
 2. List ips to block in list.txt (in CIDR notation)
-3. Run
+3. Run script
 4. ???. Done
 	"""
 	
