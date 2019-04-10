@@ -1,0 +1,11 @@
+1. SHA3_224 => 224 bits
+2. 224 (bits) [/8] = 28 (bytes)
+3. 28 bytes [*2] = 56 (HEX places occupied) = 56 (-long String after digestion)
+4. 56 String of HEXadecimals => max number is FFFF...FFFF (56 times). This number is:
+(10 (base 16) ^ 57) - 1 = (16^57)-1
+5. To find maximum String length base 62 (keccakmod), will use latural logs (coz idk how else). Do:
+
+floor( ln((16^57)-1) / ln(62) ) + 1 ~= floor(158.037 / 4.127) + 1 ~= floor(38.292) + 1 = 38+1=39
+
+* 39 is the maximum code length in Base62
+* Minimal code length is trivial: 0000...0000 (56 times) = 0 which representable in 1 digit
