@@ -99,7 +99,7 @@ def config_validate(c):
 
 # not so fast but very collisionless hash algo based on Keccak approach
 def keccakmod(s):
-	rawhash = hashlib.sha3_224(s.encode).hexdigest()
+	rawhash = hashlib.sha3_224(s.encode('utf-8')).hexdigest().upper()
 	modhash = base62.encode(base16.decode(rawhash))
 	
 	return modhash
